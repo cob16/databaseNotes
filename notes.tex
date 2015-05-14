@@ -169,7 +169,36 @@
         \end{itemize}
   \section*{Semistructured Data + XML}
     \subsection*{FLOWR}
-       FOR, LET, WHERE, ORDER BY, RETURN.
+    FLWOR: for, let, where, order by, return
+
+    for variable_id in document_set 
+    let var_id := XPath expression 
+    where restriction
+    order by ordering
+    return result
+    \subsection*{Semistructured data}
+        Semistructured data is data that has some structure, but whose structure may have some irregularities. Similar entities are grouped together, but entities in the same group need not have the same attributes, and attributes with the same name may have different types.
+        Information about the structure of the data may be contained within the data itself (schema-less), but if there is a separate schema describing the structure of the data, that schema only places loose constraints on the data.
+        \subsection*{Why use Semistructured data}
+        \begin{itemize}
+            \item It is useful to be able to treat the Web as a database, but web sources cannot be constrained by a database schema.
+            \item A flexible formal facilitates transfer of data between different databases.
+            \item XML is very commonly used for data representation and data exchange on the Web, and XML documents are like semistructured data.
+        
+        \subsection*{XML Document}
+        A text that is well-formed according to the XML specification, a fee-free open standard produced by W3C. An XML document is hierarchical, and so is also called an XML tree.
+        \subsection*{XML documents like semistructured data}
+            \begin{itemize}
+                \item both are hierarchical
+                \item both can be described by graphs (XML graph is always a tree, though) 
+                \item both can be schema-less or self describing
+                \item graph for semistructured data need not be a tree, unlike an XML document which always forms a tree
+                \item edges are labelled with attribute names in the graph of a semistructured docu- ment, vertices are not labelled; vertices are labelled in an XML tree, edges are not usually labelled
+                \item the labels on edges of the graph in the semistructured data model contain schema information; data is stored at leaves; vertices in an XML tree are of different kinds; data is stored at text nodes, other kinds of node provide schema informa- tion, processing instructions and comments.
+                \item order of entities and attributes matters in an XML document, not in semistruc- tured data
+                \item text and elements can be mixed in XML (see above, re labels)
+                \item XML can include comments, processing instructions, entities and more (see above, re labels)
+        \end{itemize}
 
   \section*{Security}
     Areas of concern for data security:\\
