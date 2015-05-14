@@ -64,8 +64,109 @@
         \item Durability - When a transaction is done, it will be committed. After it is committed, it can no longer be undone.
       \end{itemize}
 
-  \section*{NoSQL}
+    \subsection*{Definitions}
+      \begin{itemize}
+        \item Enterprise rule:  empirical constraint on real world entities and attributes. Examples:  ``Each  pallet  contains  5184  bottles''  (a  real  example,  referring  to  supplies of an antiviral); a student is normally allowed at most two attempts at a module examination.
+        \item Data  integrity:   the  data  in  a  database  models  the  real  world;  the  database corresponds to reality.  For example, a person has exactly one date of birth.  
+        \item Integrity  constraint:  a  constraint  on  the  values  or  combinations  of  values  that are allowed to be entered into a database.  For example, `no two distinct vehicles are allowed to have the same vehicle identication number' is a constraint that allows `vehicle identication number' to identify a particular vehicle record.
+        \item A domain is the set of possible values for an attribute; it is the type of the attribute. In a relational database, a domain is the set of possible values for the cells in a column of a table.
+        \item A candidate key is a collection of attributes whose combined values are different for each tuple in a relation. A candidate key is also minimal in the sense that no subset of the candidate key will identify tuples in this way.
+        \item A foreign key is a collection of attributes from one relation that constitutes a candidate key for another relation. The values of the foreign key attributes in the first relation must also be present in some tuple of the second relation.
+      \end{itemize}
 
+     \subsection*{Constraints}
+       \begin{itemize}
+         \item Other kinds of constraint are needed because domains and key constraints are not sufficient to capture all the different kinds of enterprise rule that need to be modelled in a database.
+         \item For example, the constraint ‘every sheep farmer owns at least one sheep’ cannot be represented using domains, foreign keys and candidate keys.
+         \item In general, minimal cardinality constraints (1..∗ cardinalities) demand more than domains and foreign and candidate keys.
+       \end{itemize}
+
+     \subsection*{SQL Integrity Checks}
+       Enums: 
+         \begin{verbatim}
+         CREATE TYPE character_kind AS ENUM
+           (’monster’, ’wizard’, ’hero’, ’seer’);
+           CREATE TABLE character (
+           ...,
+           kind character_kind,
+           etc
+         );
+         \end{verbatim}
+       Check contraint:
+         \begin{verbatim}
+           CREATE TABLE character (
+             ...,
+             kind text CHECK
+               (kind in (’monster’, ’wizard’, ’hero’, ’seer’)),
+             etc
+           );
+         \end{verbatim}
+        Foreign Key:
+          \begin{verbatim}
+            CREATE TABLE character_kind ( kind text primary key );
+              INSERT INTO character_kind (kind) VALUES
+                (monster), (wizard), (‘hero), (‘seer’);
+              CREATE TABLE character (
+              ...,
+              kind text REFERENCES character_kind(kind)
+            );
+          \end{verbatim}
+         Merits of these approaches:
+         \begin{itemize}
+            \item Enumerated type and foreign key reference allow constraint to be implemented once, and reused in many tables.
+            \item Both these approaches allow a simple query to display values to be entered into the table via form widget.
+            \item However, acceptable values are not immediately visible in the table definition when either of these approaches is used.
+            \item Cannot use native string operators such as ’like’ with enumerated types (this restriction is not true of every DBMS.)
+            \item Using a foreign key reference facilitates modification of the list of acceptable values.
+            \item A check constraint is immediately visible in a table definition.
+            \item Values shown in the check constraint can be used with native string operators.
+            \item A check constraint is not available for use in other tables.
+         \end{itemize}
+
+  \section*{NoSQL}
+    \subsection*{NoSQL Servers}
+      \begin{itemize}
+        \item MongoDB: BSON, binary format JSON
+        \item MarkLogic: XML with support for JSON and other formats
+        \item Apache CouchDB: JSON
+        \item Apache Cassandra: key-value store
+      \end{itemize}
+
+    \subsection*{Advantages}
+      \begin{itemize}
+        \item Scaling using clusters of commodity hardware rather than bigger specialist servers
+        \item Capacity to handle larger volumes of data and higher transaction rates than rdbms
+        \item Less need for database administrators
+        \item Lower costs, both to start up and to expand
+        \item Few, if any data model restrictions
+      \end{itemize}
+
+      \subsection*{Disadvantages}
+        \begin{itemize}
+          \item NoSQL databases are relatively immature, so expert support can be difficult to obtain
+          \item NoSQL data models emphasise whole documents, which eliminates the need for JOINs but which also makes analysis of data sets difficult
+          \item There are many NoSQL data manipulation languages, which reduces portability of queries and transferability of skills
+          \item The lack of a schema is likely to present problems for maintenance as a database matures
+          \item Because data is not normalized, maintaining consistency is challenging
+        \end{itemize}
+    
+      \subsection*{Map reduce}
+        \begin{itemize}
+          \item A MapReduce job splits input data, in the form of (key,value) pairs, into chunks that are processed in parallel.\
+
+          \item A MapReduce job configuration typically specifies mapping, combination, partitioning, reducing, and input and output formats. A MapReduce job configuration to count the occurrences of words in text files distributed across a network could use the original files as chunks, and specify a map operation to count words, and a reduce operation to combine word counts.\
+
+          \item A map task operates on a single chunk of data, producing as output a collection of (key,value) pairs. A map task in the word counting application could count the words in a single text file, producing a list of words each paired with its number of occurrences.\
+
+          \item A reduce task takes two or more collections of ¡key,value¿ pairs and reduces these to a single collection. A reduce task in the word counting application might take several lists of words with their respective word counts and deliver a single list that gave the total count for each word.
+        \end{itemize}
+
+      \subsection*{Eventual Consistency}
+        \begin{itemize}
+          \item Eventual consistency means that if a data item is not written or updated for a sufficiently long period of time, then all reads of that item will return the same value.
+          \item An application developer must allow for the possibility that an application may read data that has been superseded.
+          \item Eventual consistency makes it easier to provide readily scalable, highly available distributed systems that continue to operate even when nodes or connections between nodes fail.  
+        \end{itemize}
   \section*{Semistructured Data + XML}
     \subsection*{FLOWR}
        FOR, LET, WHERE, ORDER BY, RETURN.
