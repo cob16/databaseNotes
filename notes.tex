@@ -1,0 +1,71 @@
+\documentclass[10pt]{article}
+\usepackage{a4wide}
+\usepackage[english]{babel}
+\usepackage{fancyhdr}
+\usepackage{hyperref}
+\usepackage{lastpage}
+\usepackage{graphicx}
+\usepackage[section]{placeins}
+\usepackage[superscript,biblabel]{cite}
+\usepackage[margin=1in]{geometry}
+
+\pagestyle{fancy}
+\rhead{}
+
+\begin{document}
+  \section*{Relational Data Model}
+    \subsection*{Definitions}
+    \begin{itemize}
+      \item An entity class is a collection of entity instances that have a common structure.
+      For example, a whole collection of student records could form an entity class.
+
+      \item An entity instance represents a particular object of interest that is to be represented
+      and tracked. For example, a student record is an entity instance that
+      represents an individual student.
+
+      \item An attribute represents a piece of interesting information, or a measurable fact,
+      about the instances of an entitity class. For example, ’year of first registration’
+      is a fact about students that might be represented as an attribute of all the
+      instances of the entity class ’student’
+
+      \item A domain is a set of values that can be assigned to an attribute; for example,
+      the attribute ’birthday’ coudl be given values from the domain ’date’.
+
+      \item A relationship is an association between entities. Entities are often identified by
+      nouns in a requirements specification, and relationships by verbs. For example,
+      ’owns’ might form a relationship between entities ’person’ and ’vehicle’. Relationships
+      can be described as relationships between entity classes, or between
+      entity instances.
+
+      \item Mathematically, a relation consists of a heading, which is a subset of the Cartesian
+      product of a set of (attribute name, domain) pairs, and a body, which contains
+      (attribute name, value) pairs. For example, the entity class student could be
+      represented as a heading, (student number, integer), (student name, text) and
+      a body containing values like (student number, 123),(student name, Bloggs)
+      A relation is implemented as a table in a relational database.
+
+      \item A candidate key is a minimal set of attributes that identifies each individual
+      row in a table (each tuple in a relation). For example, suppose there was a
+      relation Slotroom,day,time in a timetabling application. Then room,day,time or
+      class,day,time would serve as alternative candidate keys for the relation.
+
+      \item The primary key is the candidate key that has been nominated to identify individual
+      rows in a table. For example, in the timetabling relation above, room,day,time
+      would be likely to form a suitable primary key because ’class’ is likely to change.
+    \end{itemize}
+
+    \subsection*{ACID}
+      \begin{itemize}
+        \item Atomicity - something is either done completely, or not done at all. The state of doing it is not visible outside the database.
+        \item Consistency - The database is in a legal state at all times. When a transaction occurs, it can not break the rules. These rules are about integrity, what is allowed and what is not allowed in certain locations of the database.
+        \item Isolation - There can be more than one transaction occurring at the same time. A certain transaction will not see changes made by other transactions.
+        \item Durability - When a transaction is done, it will be committed. After it is committed, it can no longer be undone.
+      \end{itemize}
+
+    \subsection*{FLOWR}
+       FOR, LET, WHERE, ORDER BY, RETURN.
+
+    
+
+\end{document}
+
