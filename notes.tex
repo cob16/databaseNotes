@@ -124,7 +124,49 @@
          \end{itemize}
 
   \section*{NoSQL}
+    \subsection*{NoSQL Servers}
+      \begin{itemize}
+        \item MongoDB: BSON, binary format JSON
+        \item MarkLogic: XML with support for JSON and other formats
+        \item Apache CouchDB: JSON
+        \item Apache Cassandra: key-value store
+      \end{itemize}
 
+    \subsection*{Advantages}
+      \begin{itemize}
+        \item Scaling using clusters of commodity hardware rather than bigger specialist servers
+        \item Capacity to handle larger volumes of data and higher transaction rates than rdbms
+        \item Less need for database administrators
+        \item Lower costs, both to start up and to expand
+        \item Few, if any data model restrictions
+      \end{itemize}
+
+      \subsection*{Disadvantages}
+        \begin{itemize}
+          \item NoSQL databases are relatively immature, so expert support can be difficult to obtain
+          \item NoSQL data models emphasise whole documents, which eliminates the need for JOINs but which also makes analysis of data sets difficult
+          \item There are many NoSQL data manipulation languages, which reduces portability of queries and transferability of skills
+          \item The lack of a schema is likely to present problems for maintenance as a database matures
+          \item Because data is not normalized, maintaining consistency is challenging
+        \end{itemize}
+    
+      \subsection*{Map reduce}
+        \begin{itemize}
+          \item A MapReduce job splits input data, in the form of (key,value) pairs, into chunks that are processed in parallel.\
+
+          \item A MapReduce job configuration typically specifies mapping, combination, partitioning, reducing, and input and output formats. A MapReduce job configuration to count the occurrences of words in text files distributed across a network could use the original files as chunks, and specify a map operation to count words, and a reduce operation to combine word counts.\
+
+          \item A map task operates on a single chunk of data, producing as output a collection of (key,value) pairs. A map task in the word counting application could count the words in a single text file, producing a list of words each paired with its number of occurrences.\
+
+          \item A reduce task takes two or more collections of ¡key,value¿ pairs and reduces these to a single collection. A reduce task in the word counting application might take several lists of words with their respective word counts and deliver a single list that gave the total count for each word.
+        \end{itemize}
+
+      \subsection*{Eventual Consistency}
+        \begin{itemize}
+          \item Eventual consistency means that if a data item is not written or updated for a sufficiently long period of time, then all reads of that item will return the same value.
+          \item An application developer must allow for the possibility that an application may read data that has been superseded.
+          \item Eventual consistency makes it easier to provide readily scalable, highly available distributed systems that continue to operate even when nodes or connections between nodes fail.  
+        \end{itemize}
   \section*{Semistructured Data + XML}
     \subsection*{FLOWR}
        FOR, LET, WHERE, ORDER BY, RETURN.
