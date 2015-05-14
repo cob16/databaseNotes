@@ -71,8 +71,33 @@
        FOR, LET, WHERE, ORDER BY, RETURN.
 
   \section*{Security}
+    Areas of concern for data security:\\
+    \begin{tabular}{r | p{6cm} | p{6cm} } 
+      Confidentiality & Ensure only authorised parties have access to data & Use Encryption, authorisations and authentication\\ & & \\
+      Integrity & Ensure data is not modified by authorised or unauthorised parties. and is not corrupt by system limitations & Use checksums, hashes and digital signatures\\ & & \\
+      Availability & Ensure the data is accessible when needed & backups, redundancies, attack mitigation\\ & & \\
+    \end{tabular}
 
-    
+    \subsection*{Symmetric vs Asymmetric}
+      \textbf{Symmetric:}Going one way is the same as going the other. Eg encrypting and decrypting use the same key so must be kept super secure!\\
+      \textbf{Asymmetric:}Going one way is not the same as the other. Eg two keys are needed, one to encrypt and one to decrypt. Typically one is ``Private'' and one is ``Public''. Knowing one key does not allow you to go the other way.
+    \subsection*{DES - The Data Encryption Standard}
+      \begin{itemize}
+        \item From IBM Early 1970's, Published and standardized in 80's
+        \item 56-bit Keys (with additional 8 bits of parity)
+        \item Fast to encrypt/decrypt in hardware and software
+        \item superseeded by TDES and AES
+        \item Uses sequence of Permutations and Substitutions, repeated 16 times
+        \item Produces:
+          \begin{itemize}
+            \item A Product Cipher - Repeating simple ciphers can produce more complex one
+            \item A Bloc Cipher - Operates on a block of data (can be adapted to streams)
+            \item A Symmetric-key Cipher - Encrypting and Decrypting keys are the same
+          \end{itemize}
+      \end{itemize}
+
+    \subsection*{}
+
 
 \end{document}
 
