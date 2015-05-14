@@ -189,10 +189,14 @@
         \subsection*{XML Document}
           A text that is well-formed according to the XML specification, a fee-free open standard produced by W3C. An XML document is hierarchical, and so is also called an XML tree.
         \subsection*{XML documents like semistructured data}
+        \subsection*{Similarities}
           \begin{itemize}
             \item both are hierarchical
             \item both can be described by graphs (XML graph is always a tree, though) 
             \item both can be schema-less or self describing
+          \end{itemize}
+        \subsection*{Differences}
+          \begin{itemize}
             \item graph for semistructured data need not be a tree, unlike an XML document which always forms a tree
             \item edges are labelled with attribute names in the graph of a semistructured docu- ment, vertices are not labelled; vertices are labelled in an XML tree, edges are not usually labelled
             \item the labels on edges of the graph in the semistructured data model contain schema information; data is stored at leaves; vertices in an XML tree are of different kinds; data is stored at text nodes, other kinds of node provide schema informa- tion, processing instructions and comments.
@@ -200,6 +204,7 @@
             \item text and elements can be mixed in XML (see above, re labels)
             \item XML can include comments, processing instructions, entities and more (see above, re labels)
           \end{itemize}
+          
 
   \section*{Security}
     Areas of concern for data security:\\
